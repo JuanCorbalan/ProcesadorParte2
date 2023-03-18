@@ -80,38 +80,25 @@ def main():
 
     dic_options = ['Sentimientos', 'Tematicas']
     selected_dic = st.selectbox("Elegir de que forma se van aprocesar los datos", dic_options)
+    dic= {}
 
-    dic = {}
     dicc = pd.read_csv(f'{selected_dic}.csv')
-
-    for row in dicc.iterrows():
-        entrada = row['Categoria'].lower()
-        definicion = row['Color']
-        dic[entrada] = definicion
-            
-    for key, value in dic.items():
-        st.write(f"<p style='color:#{value};font-size: 24px;display: inline;'>{key}</p>", unsafe_allow_html=True)
     
     st.subheader("Para agregar una categoria")
     color = st.color_picker('Elegir un color', '#ff0000')
     user_input = st.text_input("Elegir un nombre")
     if st.button("Agregar como categoria"):
         color = color[1:]
-        dic[user_input] = color
         new_row = pd.DataFrame({'Categoria':[user_input],'Color':[color]}) 
         dicc = dicc.append(new_row)
         dicc.to_csv(f'{selected_dic}.csv',index=False)
-        for key, value in dic.items():
-            st.write(f"<p style='color:#{value};font-size: 24px;display: inline;'>{key}</p>", unsafe_allow_html=True)
+        
     st.subheader("Para sacar de forma permanente una categoria")
     selected_element = st.selectbox("Seleccione uno para sacar",dicc['Categoria'])
     st.write("Vas a sacar: ", selected_element)
     if st.button("Sacar como categoria"):
         dicc = dicc.drop(dicc.loc[dicc['Categoria']==selected_element].index)
         dicc.to_csv(f'{selected_dic}.csv',index=False)
-        del dic[selected_element]
-        for key, value in dic.items():
-            st.write(f"<p style='color:#{value};font-size: 24px;display: inline;'>{key}</p>", unsafe_allow_html=True)
     
     st.subheader("Para seleccionar unas categorias")
     
