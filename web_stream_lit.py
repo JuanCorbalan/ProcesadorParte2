@@ -164,7 +164,6 @@ def main():
         removed_data2 = removed_data[~removed_data['Text'].str.startswith('@')]
         removed_data2 = removed_data2.reset_index()
         del removed_data2['index']
-        del removed_data2['level_0']
         st.dataframe(removed_data2.head(250).style.format({'Size': '{:,.0f}'}),width=300)
     
         
@@ -172,7 +171,6 @@ def main():
         removed_data3 = removed_data[removed_data['Text'].str.startswith('@')]
         removed_data3 = removed_data3.reset_index()
         del removed_data3['index']
-        del removed_data3['level_0']
         st.dataframe(removed_data3.head(70).style.set_properties(**{'text-align': 'left'}).format({'Size': '{:,.0f}'}),width=300)
     
         st.title("Poner en el word art: ")
