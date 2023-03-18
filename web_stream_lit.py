@@ -123,8 +123,12 @@ def main():
         entrada = row['Categoria'].lower()
         definicion = row['Color']
         dic[entrada] = definicion
-            
-
+        
+    if st.button("Quiero ver como quedan los colores por categoria"):
+        for key, value in dic.items():
+            st.write(f"<p style='color:#{value}; font-size: 24px'>{key}</p>", unsafe_allow_html=True)
+        
+        
     
     
 
