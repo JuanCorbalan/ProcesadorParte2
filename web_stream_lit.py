@@ -156,15 +156,18 @@ def main():
         filtered_df, removed_data = process_csvs(df_datos_contados, df_visualizado, df_palabras_a_sacar,dic,dicc)
         removed_data,filtered_df = post_process(filtered_df,removed_data)
         st.subheader("Algunas palabras que no entraron: ")
+        removed_data = removed_data.reset_index()
         st.dataframe(removed_data.head(150).style.set_properties(**{'text-align': 'left'}).format({'Size': '{:,.0f}'}),width=300)
 
         st.subheader("Primeras 250 no @ que no entraron: ")
         removed_data2 = removed_data[~removed_data['Text'].str.startswith('@')]
+        removed_data2 = removed_data2.reset_index()
         st.dataframe(removed_data2.head(250).style.format({'Size': '{:,.0f}'}),width=300)
     
         
         st.subheader("Primeros 70 @ que no entraron: ")
         removed_data3 = removed_data[removed_data['Text'].str.startswith('@')]
+        removed_data3 = removed_data3.reset_index()
         st.dataframe(removed_data3.head(70).style.set_properties(**{'text-align': 'left'}).format({'Size': '{:,.0f}'}),width=300)
     
         st.title("Poner en el word art: ")
