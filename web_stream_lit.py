@@ -124,6 +124,9 @@ def main():
         definicion = row['Color']
         dic[entrada] = definicion
         
+    st.dataframe(dicc)
+
+        
     if st.button("Quiero ver como quedan los colores por categoria"):
         for key, value in dic.items():
             st.write(f"<p style='color:#{value}; font-size: 24px'>{key}</p>", unsafe_allow_html=True)
@@ -132,8 +135,7 @@ def main():
     
     
 
-    st.dataframe(dicc)
-
+    
     uploaded_file1 = st.file_uploader("Primero el excel con datos crudos", type=["xlsx"])
     uploaded_file2 = st.file_uploader("Segundo el filtrador de datos", type=["xlsx"])
     uploaded_file3 = st.file_uploader("Tercero palabras a sacar", type=["xlsx"])
