@@ -84,7 +84,7 @@ def main():
     dic = {}
     dicc = pd.read_csv(f'{selected_dic}.csv')
 
-    for index, row in dicc.iterrows():
+    for row in dicc.iterrows():
         entrada = row['Categoria'].lower()
         definicion = row['Color']
         dic[entrada] = definicion
