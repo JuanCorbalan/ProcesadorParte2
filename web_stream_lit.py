@@ -113,6 +113,7 @@ def main():
         df_filtra.to_csv(f'{selected_dic}f.csv',index=False)
 
     if st.button("Quedarse con todas las categorias"):
+        dicc = pd.read_csv(f'{selected_dic}.csv')
         dicc.to_csv(f'{selected_dic}f.csv',index=False)
 
     
