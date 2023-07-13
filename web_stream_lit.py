@@ -90,7 +90,7 @@ def main():
     if st.button("Agregar como categoria"):
         color = color[1:]
         new_row = pd.DataFrame({'Categoria':[user_input],'Color':[color]}) 
-        dicc = dicc.append(new_row)
+        dicc = pd.concat([dicc, new_row], ignore_index=True)
         dicc.to_csv(f'{selected_dic}.csv',index=False)
         
     st.subheader("Para sacar de forma permanente una categoria")
