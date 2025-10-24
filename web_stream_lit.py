@@ -1,8 +1,6 @@
 import pandas as pd
 import streamlit as st
 from collections import Counter
-import os
-os.environ["STREAMLIT_SERVER_FILEWATCHER_TYPE"] = "none"
 
 def post_process(df_filtrado, df_sacado):
     df_filtrado_sin_null = df_filtrado.dropna(subset = ['Size'])
